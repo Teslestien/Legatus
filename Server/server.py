@@ -16,21 +16,12 @@ def receive():
   receiver = request.args.get("user")
   to_receive = []
   messages = json.loads(open("messages.json").read())
-  try:
-    if receiver == "Questo":
-      for i in range(len(messages)):
-        if messages[i]["Sender"] == "Exclay":
-          messages[i]["Content"] = messages[i]["Content"].replace(" ", "+")
-          to_receive.append(messages[i])
-          del messages[i]
-    else:
-      for i in range(len(messages)):
-        if messages[i]["Sender"] == "Questo":
-          messages[i]["Content"] = messages[i]["Content"].replace(" ", "+")
-          to_receive.append(messages[i])
-          del messages[i]
-  except:
-    return "[]\n"
+  for i in range(len(messages)):
+    print(i)
+    if messages[i]["Sender"] != receiver:
+      messages[i]["Content"] = messages[i]["Content"].replace(" ", "+")
+      to_receive.append(messages[i])
+      del messages[i]
 
   with open("messages.json", "w") as outfile:
     outfile.write(json.dumps(messages))
