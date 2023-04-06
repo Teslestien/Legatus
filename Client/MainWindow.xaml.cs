@@ -31,6 +31,7 @@ namespace Legatus
     {
         readonly Thread t;
         readonly string user = "Questo";
+        readonly string URL;
         public MainWindow()
         {
             InitializeComponent();
@@ -44,7 +45,7 @@ namespace Legatus
         public void MessageManager()
         {
             var web = new WebClient();
-            var url = $"https://legatus.teslestien.repl.co/receive?user={user}";
+            var url = $"{URL}/receive?user={user}";
             string downloadString = "[]\n";
             try
             {
@@ -81,7 +82,7 @@ namespace Legatus
             GenerateMessage(user, message, DateTime.Now.TimeOfDay.ToString());
 
             var web = new WebClient();
-            var url = $"https://legatus.teslestien.repl.co/send?user={user}&message={message}";
+            var url = ${URL}/send?user={user}&message={message}";
             web.DownloadString(url);
 
             MessageBox.Document.Blocks.Clear();
