@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ymGDr25zV45lNhNKiKt3ZMR9N+fS7Q1yzOV7TmezkV7gpFJrIFIaIEnhI4hwk1JeuB2SrO/f5Fls8gWu3+Tylg==",
+  "dgSpecHash": "hxwZFTId0zhU9u0QRLRszaao86XDCiwAuAW/uKSmjEd67XRqTyksvI7J7RRjAoKNtk7sZYDpLEsoDiUHGG+6zg==",
   "success": true,
-  "projectFilePath": "D:\\Visual Studio Projects\\Legatus\\Legatus.csproj",
+  "projectFilePath": "D:\\Visual Studio Projects\\Legatus\\Client\\Legatus.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.build\\15.1.548\\microsoft.build.15.1.548.nupkg.sha512",

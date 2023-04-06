@@ -1,20 +1,20 @@
 ﻿Legatus
 
 
-winexe
+exe
 C#
 .cs
-D:\Visual Studio Projects\Legatus\obj\Debug\
+D:\Visual Studio Projects\Legatus\Client\obj\Debug\
 Legatus
 none
 false
 DEBUG;TRACE
-D:\Visual Studio Projects\Legatus\App.xaml
+D:\Visual Studio Projects\Legatus\Client\App.xaml
 1219584333
 
 6-793535042
-121-188726210
+131308925226
 MainWindow.xaml;
 
-False
+True
 
