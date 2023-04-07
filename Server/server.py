@@ -17,7 +17,6 @@ def receive():
   messages = json.loads(open("messages.json").read())
   for i in range(len(messages)):
     try:
-      print(i, messages[i]["Sender"])
       if messages[i]["Sender"] != receiver:
         messages[i]["Content"] = messages[i]["Content"].replace(" ", "+")
         to_receive.append(messages[i])
@@ -38,11 +37,9 @@ def send():
   message = request.args.get("message")
   time = datetime.now().strftime("%H:%M:%S:%f")
   msg = {"Sender": sender, "Time": time, "Content": message}
-  print(msg)
   messages.append(msg)
   with open("messages.json", "w") as outfile:
     outfile.write(json.dumps(messages))
-  print(sender, message, time, sep="\n")
   return "[]\n"
 
 
