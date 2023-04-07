@@ -1,5 +1,4 @@
 from flask import Flask, request
-from replit import db
 from datetime import datetime
 import json
 
@@ -17,11 +16,14 @@ def receive():
   to_receive = []
   messages = json.loads(open("messages.json").read())
   for i in range(len(messages)):
-    print(i)
-    if messages[i]["Sender"] != receiver:
-      messages[i]["Content"] = messages[i]["Content"].replace(" ", "+")
-      to_receive.append(messages[i])
-      del messages[i]
+    try:
+      print(i, messages[i]["Sender"])
+      if messages[i]["Sender"] != receiver:
+        messages[i]["Content"] = messages[i]["Content"].replace(" ", "+")
+        to_receive.append(messages[i])
+        del messages[i]
+    except:
+      continue
 
   with open("messages.json", "w") as outfile:
     outfile.write(json.dumps(messages))

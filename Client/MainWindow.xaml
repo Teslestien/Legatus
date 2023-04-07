@@ -6,17 +6,43 @@
         xmlns:local="clr-namespace:Legatus"
         mc:Ignorable="d"
         Title="Arcalam" ResizeMode="CanResize"
-        WindowStartupLocation="CenterScreen" Width="800" Height="400" SnapsToDevicePixels="True" Closing="Window_Closing">
-    <Grid Background="SkyBlue">
+        WindowStartupLocation="CenterScreen" Width="900" Height="500" SnapsToDevicePixels="True" Closing="Window_Closing">
+    <Grid Name="MainContainer" Background="SkyBlue">
         <TextBlock x:Name="Today" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Top" TextAlignment="Center" Text="Wednesday December 5th, 2020"/>
-            <ScrollViewer Name="ScrollBar"  VerticalScrollBarVisibility="Hidden" Margin="0,26,0,80">
+        <Grid Visibility="Collapsed" Panel.ZIndex="1" Background="LightGray" x:Name="OptionsMenu" Height="140" Width="300">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Margin="10" Text="Server URL: " HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBox Name="ServerURL" Grid.Column="1" Grid.Row="0" Margin="10" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBox>
+
+            <TextBlock Grid.Column="0" Grid.Row="1" Margin="10" Text="Username: " HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBox Name="Username" Grid.Column="1" Grid.Row="1" Margin="10" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBox>
+
+            <TextBlock TextWrapping="Wrap" Grid.Column="0" Grid.Row="2" Margin="10" Text="Background Image: " VerticalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <TextBox Name="BackgroundImage" Margin="30,10,10,10" Width="100" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <Button Click="OpenImage" Padding="5,0,5,0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="..."></Button>
+            </StackPanel>
+
+            <Button Click="CancelOptions"  Grid.Column="1" Grid.Row="3" Content="Cancel/Close" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,40,0"></Button>
+            <Button Click="SaveOptions" Grid.Column="1" Grid.Row="3" Content="Save" HorizontalAlignment="Right" VerticalAlignment="Center"></Button>
+        </Grid>
+        <ScrollViewer Name="ScrollBar"  VerticalScrollBarVisibility="Hidden" Margin="0,26,0,80">
             <StackPanel>
                 <StackPanel x:Name="MessageContainer">
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
         <StackPanel Height="40" Width="45" Background="SkyBlue" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <Button Background="Transparent" BorderBrush="Transparent">
+            <Button Click="OptionsClick" Background="Transparent" BorderBrush="Transparent">
                 <StackPanel>
                     <Rectangle Fill="Black" Stroke="Transparent" Margin="2" Height="8" Width="45"></Rectangle>
                     <Rectangle Fill="Black" Stroke="Transparent" Margin="2" Height="8" Width="45"></Rectangle>
@@ -36,7 +62,7 @@
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
-            <Button Click="SendMessage" Background="Green" Content="SEND" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+            <Button Click="SendMessage" Background="CornflowerBlue" Content="SEND✈" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
             </Button>
         </Grid>
     </Grid>

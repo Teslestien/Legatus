@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Newtonsoft.Json;
 
 namespace Legatus
@@ -19,6 +21,8 @@ namespace Legatus
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
+
+
 
     public class Message
     {
@@ -30,11 +34,26 @@ namespace Legatus
     public partial class MainWindow : Window
     {
         readonly Thread t;
-        readonly string user = "Questo";
-        readonly string URL;
+        string user;
+        string URL;
         public MainWindow()
         {
             InitializeComponent();
+
+            ServerURL.Text = URL = Properties.Settings.Default.ServerURLSetting;
+            Username.Text = user = Properties.Settings.Default.UsernameSetting;
+            BackgroundImage.Text = Properties.Settings.Default.BackgroundImageSetting;
+            OptionsMenu.Visibility = Visibility.Collapsed;
+
+            try
+            {
+                MainContainer.Background = new ImageBrush(new BitmapImage(new Uri(Properties.Settings.Default.BackgroundImageSetting)));
+            }
+            catch
+            {
+                MainContainer.Background = Brushes.SkyBlue;
+                Properties.Settings.Default.BackgroundImageSetting = "";
+            }
 
             Today.Text = DateTime.Now.ToLongDateString();
 
@@ -45,15 +64,17 @@ namespace Legatus
         public void MessageManager()
         {
             var web = new WebClient();
-            var url = $"{URL}/receive?user={user}";
+            var url = $"{URL}receive?user={user}";
             string downloadString = "[]\n";
             try
             {
                 downloadString = web.DownloadString(url);
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine("Failed to receive because: " + e.Message);
                 MessageManager();
+                return;
             }
             Console.WriteLine("Download string: " + downloadString);
             if (downloadString != "[]\n")
@@ -79,12 +100,19 @@ namespace Legatus
         private void SendMessage(object sender, RoutedEventArgs e)
         {
             string message = Encrypt(new TextRange(MessageBox.Document.ContentStart, MessageBox.Document.ContentEnd).Text, "*");
-            GenerateMessage(user, message, DateTime.Now.TimeOfDay.ToString());
-
             var web = new WebClient();
-            var url = ${URL}/send?user={user}&message={message}";
-            web.DownloadString(url);
+            var url = $"{URL}send?user={user}&message={message}";
+            try
+            {
+                web.DownloadString(url);
+            }
+            catch (Exception exception)
+            {
+                System.Windows.MessageBox.Show("Reason: " + exception.Message, "Failed to connect to server", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes);
+                return;
+            }
 
+            GenerateMessage(user, message, DateTime.Now.TimeOfDay.ToString());
             MessageBox.Document.Blocks.Clear();
         }
 
@@ -158,8 +186,6 @@ namespace Legatus
 
 
             MessageContainer.Children.Add(msgBorder);
-
-
 
             ScrollBar.ScrollToEnd();
         }
@@ -236,6 +262,63 @@ namespace Legatus
                 ;
             }
             return cipherText;
+        }
+
+        private void OptionsClick(object sender, RoutedEventArgs e)
+        {
+            OptionsMenu.Visibility = Visibility.Visible;
+        }
+
+        private void CancelOptions(object sender, RoutedEventArgs e)
+        {
+            ServerURL.Text = Properties.Settings.Default.ServerURLSetting;
+            Username.Text = Properties.Settings.Default.UsernameSetting;
+            BackgroundImage.Text = Properties.Settings.Default.BackgroundImageSetting;
+            OptionsMenu.Visibility = Visibility.Collapsed;
+        }
+
+        private void SaveOptions(object sender, RoutedEventArgs e)
+        {
+
+            if (ServerURL.Text.Last() != '/')
+            {
+                ServerURL.Text += "/";
+            }
+            URL = Properties.Settings.Default.ServerURLSetting = ServerURL.Text;
+            user = Properties.Settings.Default.UsernameSetting = Username.Text;
+            Properties.Settings.Default.BackgroundImageSetting = BackgroundImage.Text;
+            Properties.Settings.Default.Save();
+            try
+            {
+                MainContainer.Background = new ImageBrush(new BitmapImage(new Uri(Properties.Settings.Default.BackgroundImageSetting)));
+            }
+            catch
+            {
+                MainContainer.Background = Brushes.SkyBlue;
+                Properties.Settings.Default.BackgroundImageSetting = "";
+            }
+        }
+
+        private void OpenImage(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Microsoft.Win32.OpenFileDialog
+            {
+                FileName = "Image", // Default file name
+                DefaultExt = ".png", // Default file extension
+                Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png" // Filter files by extension
+            };
+
+            // Show open file dialog box
+            bool? result = dialog.ShowDialog();
+
+            // Process open file dialog box results
+            if (result == true)
+            {
+                BackgroundImage.Text = dialog.FileName;
+                Console.WriteLine(dialog.FileName);
+            }
         }
     }
 }

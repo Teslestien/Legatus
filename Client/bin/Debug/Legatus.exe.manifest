@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Legatus.exe" size="17848">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Legatus.exe" size="22456">
       <assemblyIdentity name="Legatus" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Nac+tUEqK0EzH1KQA9QSNlDMG0JovzBUb3+TDGaEIP4=</dsig:DigestValue>
+        <dsig:DigestValue>mMXTx0dUNfPlX59NsRTn6od8HA/21TYZpZfqHu5Wnmo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -185,13 +185,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Legatus.exe.config" size="1903">
+  <file name="Legatus.exe.config" size="2781">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>v2hDuVTHQCJ6Yjb0wmPaNjLlin1Q3bUYZlUqrRsmgIg=</dsig:DigestValue>
+      <dsig:DigestValue>mYFSf9b9IE54ya6+ZnR6LmP1ss4hXHNq2S4eTLLtim4=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
