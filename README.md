@@ -9,4 +9,5 @@ Then input URL where you hosted the server(or try using my test server URL: `htt
 Ask your friends to join and enjoy the secure communication. 
 
 ### NOTE:
-The test server has only 50 megabytes of storage so your messages will be deleted once they are received. So not everyone in the chat room will be able to see them. Also, no messages will be stored by the client softwares. 
+The test server has only 50 megabytes of storage so your messages will be deleted once they are received. So not everyone in the chat room will be able to see them. Also, no messages will be stored by the client softwares.\
+For changing the encryption key change it in the source code and build your own release and then distribute it because the encryption key must be the same on all releases.
