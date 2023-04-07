@@ -17,10 +17,9 @@ using Newtonsoft.Json;
 
 namespace Legatus
 {
-    // <summary>
+    /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    /// 
     public class Message
     {
         public string Sender { get; set; }

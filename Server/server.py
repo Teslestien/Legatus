@@ -20,7 +20,9 @@ def receive():
       if messages[i]["Sender"] != receiver:
         messages[i]["Content"] = messages[i]["Content"].replace(" ", "+")
         to_receive.append(messages[i])
+        #remove the following line to disable disappearing messages
         del messages[i]
+        #remove the above line to disable disappearing messages
     except:
       continue
 
