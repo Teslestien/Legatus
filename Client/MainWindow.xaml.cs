@@ -21,9 +21,6 @@ namespace Legatus
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
-
-
-
     public class Message
     {
         public string Sender { get; set; }

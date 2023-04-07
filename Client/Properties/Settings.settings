@@ -6,7 +6,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="UsernameSetting" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">User1</Value>
     </Setting>
     <Setting Name="BackgroundImageSetting" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
