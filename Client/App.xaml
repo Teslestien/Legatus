@@ -1,7 +1,7 @@
-﻿<Application x:Class="Legatus.App"
+﻿<Application x:Class="LegatusApplication.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Legatus"
+             xmlns:local="clr-namespace:LegatusApplication"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

@@ -1,12 +1,12 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Legatus.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LegatusApplication.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="ServerURLSetting" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="UsernameSetting" Type="System.String" Scope="User">
-      <Value Profile="(Default)">User1</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="BackgroundImageSetting" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

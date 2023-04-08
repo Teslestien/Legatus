@@ -17,12 +17,12 @@ def receive():
   messages = json.loads(open("messages.json").read())
   for i in range(len(messages)):
     try:
-      if messages[i]["Sender"] != receiver:
+      print(i, messages[i]["Sender"])
+      if messages[i]["Sender"] != receiver and (
+          receiver not in messages[i]["ReceivedBy"]):
         messages[i]["Content"] = messages[i]["Content"].replace(" ", "+")
+        messages[i]["ReceivedBy"].append(receiver)
         to_receive.append(messages[i])
-        #remove the following line to disable disappearing messages
-        del messages[i]
-        #remove the above line to disable disappearing messages
     except:
       continue
 
@@ -38,10 +38,12 @@ def send():
   sender = request.args.get("user")
   message = request.args.get("message")
   time = datetime.now().strftime("%H:%M:%S:%f")
-  msg = {"Sender": sender, "Time": time, "Content": message}
+  msg = {"Sender": sender, "Time": time, "Content": message, "ReceivedBy": []}
+  print(msg)
   messages.append(msg)
   with open("messages.json", "w") as outfile:
     outfile.write(json.dumps(messages))
+  print(sender, message, time, sep="\n")
   return "[]\n"
 
 

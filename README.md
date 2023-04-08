@@ -5,9 +5,9 @@ It cannot do much for the time being and is just a basic chat app. Host the pyth
 Download and install one of the .msi releases.\
 After that, open Legatus and click the top right options icon.
 ![Example illustration](https://i.imgur.com/nh0jUiy.png)\
-Then input URL where you hosted the server(or try using my test server URL: `https://legatus.teslestien.repl.co/`), any username of your choice and a background image if you wish.\
+Then type in the URL of your hosted server(or try using my test server: `https://legatus.teslestien.repl.co/`), any username of your choice and a background image if you wish.\
 Ask your friends to join and enjoy the secure communication. 
 
-### NOTE:
-The test server has only 50 megabytes of storage so your messages will be deleted once they are received. So not everyone in the chat room will be able to see them. Also, no messages will be stored by the client softwares.\
-For changing the encryption key change it in the source code and build your own release and then distribute it because the encryption key must be the same on all releases.
+#### NOTE:
+The test server can be publically accessed so do not use it to share sensitive information.\
+For changing the encryption key you will have to change it in the source code and build your own release because the encryption key used by all the users in each release should be the same.

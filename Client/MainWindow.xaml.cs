@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Newtonsoft.Json;
 
-namespace Legatus
+namespace LegatusApplication
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -30,11 +30,12 @@ namespace Legatus
     public partial class MainWindow : Window
     {
         readonly Thread t;
-        string user;
-        string URL;
+        string user = "";
+        string URL = "";
         public MainWindow()
         {
             InitializeComponent();
+
 
             ServerURL.Text = URL = Properties.Settings.Default.ServerURLSetting;
             Username.Text = user = Properties.Settings.Default.UsernameSetting;
@@ -59,37 +60,38 @@ namespace Legatus
 
         public void MessageManager()
         {
-            var web = new WebClient();
-            var url = $"{URL}receive?user={user}";
-            string downloadString = "[]\n";
-            try
+            while (true)
             {
-                downloadString = web.DownloadString(url);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Failed to receive because: " + e.Message);
-                MessageManager();
-                return;
-            }
-            Console.WriteLine("Download string: " + downloadString);
-            if (downloadString != "[]\n")
-            {
-                List<Message> ReceivedMessages = JsonConvert.DeserializeObject<List<Message>>(downloadString);
-
-                foreach (var item in ReceivedMessages)
+                var web = new WebClient();
+                var url = $"{URL}receive?user={user}";
+                string downloadString = "[]\n";
+                try
                 {
-                    Dispatcher.Invoke(() =>
-                    {
-                        GenerateMessage(item.Sender, item.Content, item.Time);
-                    });
+                    downloadString = web.DownloadString(url);
                 }
-                MessageManager();
-            }
-            else
-            {
-                Thread.Sleep(1000);
-                MessageManager();
+                catch (Exception e)
+                {
+                    Console.WriteLine("Failed to receive because: " + e.Message);
+                    continue;
+                }
+                if (downloadString != "[]\n")
+                {
+                    List<Message> ReceivedMessages = JsonConvert.DeserializeObject<List<Message>>(downloadString);
+
+                    foreach (var item in ReceivedMessages)
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            GenerateMessage(item.Sender, item.Content, item.Time);
+                        });
+                    }
+                    continue;
+                }
+                else
+                {
+                    Thread.Sleep(1000);
+                    continue;
+                }
             }
         }
 

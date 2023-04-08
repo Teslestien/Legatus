@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Legatus.Properties {
+namespace LegatusApplication.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -37,7 +37,7 @@ namespace Legatus.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("User1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string UsernameSetting {
             get {
                 return ((string)(this["UsernameSetting"]));
